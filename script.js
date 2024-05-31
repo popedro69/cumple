@@ -1,5 +1,5 @@
 const options = ["Chiste", "Trago largo", "Imita a Rajoy", "Trago corto", "Selfie grupal", "Habla como un robot", "Entretenme payaso", "Piedra, Papel, Tijera", "Trago largo", "Una verdad", "Trago corto"];
-const colors = ["#FF5733", "#33FF57", "#3357FF", "#F333FF", "#33FFF5", "#FFB733", "#FF5733", "#33FF57", "#3357FF", "#F333FF", "#33FFF5"];
+const colors = ["#00796b", "#4caf50", "#a5d6a7", "#ffd54f", "#ffab91", "#ff80ab", "#c2185b", "#ba68c8", "#64b5f6", "#FFD700", "#ffa000"]; // Nuevo color para "Una verdad"
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const spinButton = document.getElementById("spinButton");
