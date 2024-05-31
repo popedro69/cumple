@@ -73,7 +73,13 @@ function rotateWheel() {
             }
             lastWinningIndex = winningIndex;
 
-            const endSound = new Audio("end.mp3.mp3"); // Sonido de fin
+            // Seleccionar el sonido según la opción ganadora
+            let endSound;
+            if (options[winningIndex] === "Beso a Pedro") {
+                endSound = new Audio("wow.mp3"); // Sonido para "Beso a Pedro"
+            } else {
+                endSound = new Audio("end.mp3.mp3"); // Sonido de fin para las otras opciones
+            }
             endSound.play().catch(error => console.error('Error al reproducir el sonido de fin:', error));
             
             popupMessage.textContent = `¡Felicidades! Has ganado: ${options[winningIndex]}`;
