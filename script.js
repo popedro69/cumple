@@ -3,8 +3,6 @@ const colors = ["#FF5733", "#33FF57", "#3357FF", "#F333FF", "#33FFF5", "#FFB733"
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const spinButton = document.getElementById("spinButton");
-const startSound = document.getElementById("startSound");
-const endSound = document.getElementById("endSound");
 const popup = document.getElementById("popup");
 const popupMessage = document.getElementById("popupMessage");
 
@@ -15,17 +13,9 @@ let popupTimeout;
 function drawRouletteWheel() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     const radius = canvas.width / 2;
-    const textRadius = 130; // Distancia del texto al centro
 
     for (let i = 0; i < options.length; i++) {
         const angle = startAngle + i * arc;
-        const text = options[i];
-
-        // Calcular posición del texto
-        const textWidth = ctx.measureText(text).width;
-        const textAngle = angle + arc / 2;
-        const textX = canvas.width / 2 + Math.cos(textAngle) * (textRadius) - textWidth / 2;
-        const textY = canvas.height / 2 + Math.sin(textAngle) * (textRadius);
 
         // Dibujar porción de la ruleta
         ctx.fillStyle = colors[i];
@@ -35,17 +25,22 @@ function drawRouletteWheel() {
         ctx.lineTo(canvas.width / 2, canvas.height / 2);
         ctx.fill();
 
-        // Dibujar texto dentro de la porción
-        ctx.fillStyle = "#000";
+        // Dibujar texto en la porción de la ruleta
+        ctx.save();
+        ctx.translate(canvas.width / 2, canvas.height / 2);
+        ctx.rotate(angle + arc / 2);
+        const text = options[i];
+        ctx.fillStyle = "black";
         ctx.font = "bold 12px Arial";
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        ctx.fillText(text, textX, textY);
+        ctx.fillText(text, radius / 3, 0);
+        ctx.restore();
     }
 }
 
 function rotateWheel() {
+    const startSound = new Audio("start.mp3"); // Sonido de inicio
     startSound.play().catch(error => console.error('Error al reproducir el sonido de inicio:', error));
+
     const spinAngleStart = Math.random() * 10 + 10;
     const spinTime = Math.random() * 3 + 4 * 1000;
     const spinTimeTotal = 5000;
@@ -70,6 +65,7 @@ function rotateWheel() {
         if (progress < 1) {
             requestAnimationFrame(rotate);
         } else {
+            const endSound = new Audio("end.mp3"); // Sonido de fin
             endSound.play().catch(error => console.error('Error al reproducir el sonido de fin:', error));
             const winningIndex = Math.floor((startAngle / arc) % options.length);
             popupMessage.textContent = `¡Felicidades! Has ganado: ${options[winningIndex]}`;
@@ -94,7 +90,3 @@ spinButton.addEventListener("click", () => {
 });
 
 drawRouletteWheel(); // Dibujar la ruleta al cargar la página
-
-
-
-
