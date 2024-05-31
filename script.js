@@ -38,7 +38,7 @@ function drawRouletteWheel() {
 }
 
 function rotateWheel() {
-    const startSound = new Audio("start.mp3"); // Sonido de inicio
+    const startSound = new Audio("start.mp3.mp3"); // Sonido de inicio
     startSound.play().catch(error => console.error('Error al reproducir el sonido de inicio:', error));
 
     const spinAngleStart = Math.random() * 10 + 10;
@@ -65,7 +65,7 @@ function rotateWheel() {
         if (progress < 1) {
             requestAnimationFrame(rotate);
         } else {
-            const endSound = new Audio("end.mp3"); // Sonido de fin
+            const endSound = new Audio("end.mp3.mp3"); // Sonido de fin
             endSound.play().catch(error => console.error('Error al reproducir el sonido de fin:', error));
             const winningIndex = Math.floor((startAngle / arc) % options.length);
             popupMessage.textContent = `¡Felicidades! Has ganado: ${options[winningIndex]}`;
