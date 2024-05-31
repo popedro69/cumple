@@ -9,6 +9,7 @@ const popupMessage = document.getElementById("popupMessage");
 let startAngle = 0;
 const arc = Math.PI / (options.length / 2);
 let popupTimeout;
+let lastWinningIndex = null;
 
 function drawRouletteWheel() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -65,9 +66,16 @@ function rotateWheel() {
         if (progress < 1) {
             requestAnimationFrame(rotate);
         } else {
+            let winningIndex = Math.floor((startAngle / arc) % options.length);
+            // Evitar que salgan dos opciones seguidas
+            while (winningIndex === lastWinningIndex) {
+                winningIndex = Math.floor(Math.random() * options.length);
+            }
+            lastWinningIndex = winningIndex;
+
             const endSound = new Audio("end.mp3.mp3"); // Sonido de fin
             endSound.play().catch(error => console.error('Error al reproducir el sonido de fin:', error));
-            const winningIndex = Math.floor((startAngle / arc) % options.length);
+            
             popupMessage.textContent = `¡Felicidades! Has ganado: ${options[winningIndex]}`;
             popup.style.display = 'block';
             popupTimeout = setTimeout(() => {
