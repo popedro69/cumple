@@ -1,4 +1,4 @@
-const options = ["Chiste", "Trago largo", "Imita a Rajoy", "Trago corto", "Selfie grupal", "Beso a Pedro", "Entretenme payaso", "Piedra, Papel, Tijera", "Trago largo", "Una verdad", "Trago corto"];
+const options = ["Chiste a Mireia", "Trago con Mireia", "Imita a Mireia", "Trago con Mireia", "Selfie grupal", "Beso a Pedro", "Anécdota con Mireia", "Baile con Mireia", "Trago con Mireia", "Foto con Mireia", "Brindis por Mireia"];
 const colors = ["#00796b", "#4caf50", "#a5d6a7", "#ffd54f", "#ffab91", "#ff80ab", "#c2185b", "#ba68c8", "#64b5f6", "#FFD700", "#ffa000"];
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
