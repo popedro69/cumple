@@ -82,7 +82,7 @@ function rotateWheel() {
             }
             endSound.play().catch(error => console.error('Error al reproducir el sonido de fin:', error));
             
-            popupMessage.textContent = `¡Felicidades! Has ganado: ${options[winningIndex]}`;
+            popupMessage.textContent = `PREMIO: ${options[winningIndex]}`;
             popup.style.display = 'block';
             popupTimeout = setTimeout(() => {
                 popup.style.display = 'none';
